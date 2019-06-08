@@ -37,15 +37,12 @@ export default (state = initialState, action) => {
     }};
   } else if (action.type === TOGGLE_TODO) {
     const todo = todos.find(item => item.id === action.payload);
-    if (todo) {
-      todo.completed = !todo.completed;
-      const completedTodos = todos.filter(item => item.completed);
-      return { ...state, ...{
-        todos,
-        completedCount: completedTodos.length
-      }};
-    }
-    return state;
+    todo.completed = !todo.completed;
+    const completedTodos = todos.filter(item => item.completed);
+    return { ...state, ...{
+      todos,
+      completedCount: completedTodos.length
+    }};
   } else if (action.type === CHECKED_ALL_TODOS) {
     const mapTodos = todos.map(item => ({ ...item, completed: !action.payload }));
     return { ...state, ...{

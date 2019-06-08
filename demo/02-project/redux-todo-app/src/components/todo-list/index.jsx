@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { getState, subscribe } from '../../utils';
 import TodoItem from '../todo-item';
 import './index.css';
 
 export default class TodoList extends React.Component {
-  static propTypes = {
-    todos: PropTypes.array.isRequired
-  };
+  state = getState();
+
+  componentWillMount() {
+    subscribe(this);
+  }
 
   render() {
-    const { todos } = this.props;
+    const { todos } = this.state;
     
     return (
       <ul className="todo-list">

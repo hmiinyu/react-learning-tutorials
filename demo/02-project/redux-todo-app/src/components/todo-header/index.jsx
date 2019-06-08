@@ -1,5 +1,5 @@
 import React from 'react';
-import store from '../../redux/store';
+import { dispatch } from '../../utils';
 import { addTodo } from '../../redux/actions';
 import './index.css';
 
@@ -8,7 +8,7 @@ export default class TodoHeader extends React.Component {
     if (e.keyCode === 13) {
       const value = e.target.value.trim();
       if (value.length) {
-        store.dispatch(addTodo({ name: value, compeleted: false }));
+        dispatch(addTodo({ name: value, compeleted: false }));
         e.target.value = '';
       }
     }

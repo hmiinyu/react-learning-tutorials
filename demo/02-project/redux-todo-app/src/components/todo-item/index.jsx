@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import store from '../../redux/store';
+import { dispatch } from '../../utils';
 import { toggleTodo, removeTodo } from '../../redux/actions';
 import './index.css';
 
@@ -22,14 +22,14 @@ export default class TodoItem extends React.Component {
           onMouseOver={()=>this.setState({showButton:true})}
           onMouseOut={()=>this.setState({showButton:false})}>
         <label>
-          <input type="checkbox" 
-                 checked={todo.completed}
-                 onChange={()=>store.dispatch(toggleTodo(todo.id))}/>
+          <input type="checkbox"
+                 checked={!!todo.completed}
+                 onChange={()=>dispatch(toggleTodo(todo.id))}/>
           <span>{todo.name}</span>
         </label>
         <button className="btn btn-warning" 
                 style={{display:showButton?'block':'none'}}
-                onClick={()=>store.dispatch(removeTodo(todo.id))}>删除</button>
+                onClick={()=>dispatch(removeTodo(todo.id))}>删除</button>
       </li>
     )
   }
