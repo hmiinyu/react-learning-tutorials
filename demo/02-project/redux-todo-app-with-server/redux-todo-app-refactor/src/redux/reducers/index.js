@@ -1,24 +1,24 @@
-import { 
-  ADD_TODO, 
-  REMOVE_TODO, 
-  REMOVE_COMPLETED_TODOS, 
-  TOGGLE_TODO, 
-  CHECKED_ALL_TODOS 
+import {
+  GET_ALL_TODOS,
+  ADD_TODO,
+  REMOVE_TODO,
+  REMOVE_COMPLETED_TODOS,
+  TOGGLE_TODO,
+  CHECKED_ALL_TODOS
 } from '../types';
 
 const initialState = {
-  todos: [
-    { id: 1, name: '学习1小时React', completed: false },
-    { id: 2, name: '学习2小时Vue', completed: false },
-    { id: 3, name: '学习3小时Angular', completed: false }
-  ],
+  todos: [],
   completedCount: 0
 };
 
 export default (state = initialState, action) => {
   const newState = Object.assign({}, state);
   const { todos } = newState;
-  if (action.type === ADD_TODO) {
+  if (action.type === GET_ALL_TODOS) {
+    newState.todos = action.payload;
+    return { ...state, ...newState };
+  } else if (action.type === ADD_TODO) {
     todos.push(action.payload);
     return { ...state, ...newState };
   } else if (action.type === REMOVE_TODO) {
