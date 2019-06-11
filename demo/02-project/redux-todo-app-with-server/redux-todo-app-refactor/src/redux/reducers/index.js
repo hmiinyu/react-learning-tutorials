@@ -13,7 +13,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const newState = Object.assign({}, state);
+  const newState = JSON.parse(JSON.stringify(state));
   const { todos } = newState;
   if (action.type === GET_ALL_TODOS) {
     newState.todos = action.payload;
